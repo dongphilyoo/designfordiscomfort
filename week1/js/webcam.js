@@ -43,6 +43,16 @@ $(document).ready(function () {
         //EXPAND_BOX = {'x': -5, 'y': -5, 'w': 5, 'h': 5};
     }
 
+
+    document.addEventListener("keyup", function (e) {
+
+        console.log(e.keyCode);
+        var msg = new SpeechSynthesisUtterance(document.getElementById('td-text').innerText);
+        window.speechSynthesis.speak(msg);
+            
+            
+    
+    });
 });
 
 
@@ -90,29 +100,11 @@ TRACKER.on('track', function (faces) {
 
     });
 
+    
+
     // var range = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    function PLAY(gender, key) {
-        document.getElementById('emoji').innerHTML = '&nbsp༼つ ͡° ͜ʖ ͡°༽つ';
-
-        //var msg;
-        var range = Math.floor(Math.random() * 4); // 18
-
-        if (gender == 'Man' && key == '84') {
-            
-            // msg = new SpeechSynthesisUtterance(TM[range]);
-            // window.speechSynthesis.speak(msg);
-            // console.log(msg);
-            document.getElementById('td-text').innerHTML = TM[range];
-        } else if (gender == 'Man' && key == '68') {
-            document.getElementById('td-text').innerHTML = DM[range];
-        }
-        if (gender == 'Woman' && key == '84') {
-            document.getElementById('td-text').innerHTML = TW[range];
-        } else if (gender == 'Woman' && key == '68') {
-            document.getElementById('td-text').innerHTML = DW[range];
-        }
-    }
+    
 
 
 
@@ -131,6 +123,37 @@ TRACKER.on('track', function (faces) {
     //     }
     // }
 });
+
+
+function PLAY(gender, key) {
+    document.getElementById('emoji').innerHTML = '&nbsp༼つ ͡° ͜ʖ ͡°༽つ';
+
+    // var msg = [];
+    // var speech;
+    var range = Math.floor(Math.random() * 4); // 18
+
+    if (gender == 'Man' && key == '84') {
+        // msg.push(TM[range])
+        // msg = new SpeechSynthesisUtterance(TM[range]);
+        // window.speechSynthesis.speak(msg);
+        // console.log(msg);
+        document.getElementById('td-text').innerHTML = TM[range];
+        // msg.push(document.getElementById('td-text').innerHTML);
+        // speech = new SpeechSynthesisUtterance(msg.pop());
+        // window.speechSynthesis.speak(speech);
+        // console.log(speech)
+        // return false;
+    } else if (gender == 'Man' && key == '68') {
+        document.getElementById('td-text').innerHTML = DM[range];
+    }
+    if (gender == 'Woman' && key == '84') {
+        document.getElementById('td-text').innerHTML = TW[range];
+    } else if (gender == 'Woman' && key == '68') {
+        document.getElementById('td-text').innerHTML = DW[range];
+    }
+}
+
+
 
 function GAME_START(gender) {
     if (gender == 'Man') {
