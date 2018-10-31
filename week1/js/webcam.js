@@ -19,12 +19,15 @@ TRACKER.setEdgesDensity(0.1);
 TRACKER.setInitialScale(4);
 TRACKER.setStepSize(1);
 var GENDER_STATUS = '';
-var TW = ['Which politician inspires you?','Which controversial politician do you admire?','What do you do to stay organized?','What is your favorite professional app?','Do you workout before or after work?'];
-var DW = ['Text/call a colleague out for a drink','Cancel a meeting/office hour','Call in sick for work the next day/email a prof that you’ll miss a class','Give your phone to someone in the room and let them text your colleague/email your prof','Sell a piece trash to someone in the group.'];
-var TM = ['What’s something kinky that you like','Tell us about the most awkward date you’ve been on','What’s the most embarrassing photo you have on social media?','Who in the room you do you find attractive?','Have you ever cheated on someone?'];
-var DM = ['Kiss someone’s hand','Kiss someone’s leg','Tell someone to smile','Get a stranger’s number','Take off your shirt'];
+var TW = ['Which politician inspires you?', 'Which controversial politician do you admire?', 'What do you do to stay organized?', 'What is your favorite professional app?', 'Do you workout before or after work?'];
+var DW = ['Text/call a colleague out for a drink', 'Cancel a meeting/office hour', 'Call in sick for work the next day/email a prof that you’ll miss a class', 'Give your phone to someone in the room and let them text your colleague/email your prof', 'Sell a piece trash to someone in the group.'];
+var TM = ['What’s something kinky that you like', 'Tell us about the most awkward date you’ve been on', 'What’s the most embarrassing photo you have on social media?', 'Who in the room you do you find attractive?', 'Have you ever cheated on someone?'];
+var DM = ['Kiss someone’s hand', 'Kiss someone’s leg', 'Tell someone to smile', 'Get a stranger’s number', 'Take off your shirt'];
 
- 
+
+
+
+
 
 $(document).ready(function () {
 
@@ -74,13 +77,13 @@ TRACKER.on('track', function (faces) {
     document.addEventListener("keydown", function (e) {
 
         console.log(e.keyCode);
-        if(e.keyCode == '32') {
+        if (e.keyCode == '32') {
             document.getElementById('emoji').innerHTML = '&nbsp;( ͡° ͜ʖ ͡°)';
             document.getElementById('td-text').innerHTML = 'Truth or Dare?<br/>Press T or D';
             return GENDER_STATUS = result_gender.label;
-            
+
         }
-        if(e.keyCode == '84' || e.keyCode == '68') {
+        if (e.keyCode == '84' || e.keyCode == '68') {
             console.log(GENDER_STATUS);
             PLAY(GENDER_STATUS, e.keyCode);
         }
@@ -92,16 +95,20 @@ TRACKER.on('track', function (faces) {
     function PLAY(gender, key) {
         document.getElementById('emoji').innerHTML = '&nbsp༼つ ͡° ͜ʖ ͡°༽つ';
 
+        var msg;
         var range = Math.floor(Math.random() * 4); // 18
 
-        if(gender == 'Man' && key == '84') {
+        if (gender == 'Man' && key == '84') {
+            
+            msg = new SpeechSynthesisUtterance(TM[range]);
+            window.speechSynthesis.speak(msg);
             document.getElementById('td-text').innerHTML = TM[range];
-        } else if(gender == 'Man' && key == '68') {
+        } else if (gender == 'Man' && key == '68') {
             document.getElementById('td-text').innerHTML = DM[range];
         }
-        if(gender == 'Woman' && key == '84') {
+        if (gender == 'Woman' && key == '84') {
             document.getElementById('td-text').innerHTML = TW[range];
-        } else if(gender == 'Woman' && key == '68') {
+        } else if (gender == 'Woman' && key == '68') {
             document.getElementById('td-text').innerHTML = DW[range];
         }
     }
