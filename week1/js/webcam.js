@@ -95,13 +95,14 @@ TRACKER.on('track', function (faces) {
     function PLAY(gender, key) {
         document.getElementById('emoji').innerHTML = '&nbsp༼つ ͡° ͜ʖ ͡°༽つ';
 
-        var msg;
+        //var msg;
         var range = Math.floor(Math.random() * 4); // 18
 
         if (gender == 'Man' && key == '84') {
             
-            msg = new SpeechSynthesisUtterance(TM[range]);
-            window.speechSynthesis.speak(msg);
+            // msg = new SpeechSynthesisUtterance(TM[range]);
+            // window.speechSynthesis.speak(msg);
+            // console.log(msg);
             document.getElementById('td-text').innerHTML = TM[range];
         } else if (gender == 'Man' && key == '68') {
             document.getElementById('td-text').innerHTML = DM[range];
